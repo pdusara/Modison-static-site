@@ -19,6 +19,9 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
+      - name: List contents
+        run: ls -R      
+
       - name: Sync Files to S3
         run: aws s3 sync ModisonFrontEnd/Views/Home s3://modison-bucket --delete
 
