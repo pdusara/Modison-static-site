@@ -22,8 +22,13 @@ jobs:
       - name: List contents
         run: ls -R      
 
-      - name: Sync Files to S3
-        run: aws s3 sync ModisonFrontEnd/Views/Home s3://modison-bucket --delete
+      - name: Sync only the public HTML files
+        run: |
+          aws s3 cp ModiSonFrontEnd/Views/Home/Index.html s3://modison-bucket/index.html
+          aws s3 cp ModiSonFrontEnd/Views/Home/Privacy.html s3://modison-bucket/privacy.html
+
+      - name: Sync static assets
+        run: aws s3 sync ModiSonFrontEnd/wwwroot s3://modison-bucket --delete
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id E2MA2BW9PESS66 --paths "/*"
