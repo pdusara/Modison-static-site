@@ -23,12 +23,12 @@ jobs:
         run: ls -R      
 
       - name: Sync static assets
-        run: aws s3 sync ModiSonFrontEnd/wwwroot s3://modison-bucket --delete
-
-      - name: Sync only the public HTML files
         run: |
-          aws s3 cp ModiSonFrontEnd/Views/Home/Index.html s3://modison-bucket/index.html
-          aws s3 cp ModiSonFrontEnd/Views/Home/Privacy.html s3://modison-bucket/privacy.html
+          aws s3 sync ModiSonFrontEnd/wwwroot s3://modison-bucket --delete
+
+      - name: Sync all HTML views recursively
+        run: |
+          aws s3 cp ModiSonFrontEnd/Views s3://modison-bucket/ --recursive --exclude "*" --include "*.html"
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id E2MA2BW9PESS66 --paths "/*"
