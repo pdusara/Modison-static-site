@@ -24,7 +24,7 @@ jobs:
 
       - name: Sync static assets
         run: |
-          aws s3 sync ModiSonFrontEnd/wwwroot s3://modison-bucket --delete
+          aws s3 sync ModiSonFrontEnd/ s3://modison-bucket --delete
 
       - name: Sync all HTML views recursively
         run: |
