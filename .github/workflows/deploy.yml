@@ -26,9 +26,9 @@ jobs:
         run: |
           aws s3 sync ModiSonFrontEnd/ s3://modison-bucket --delete
 
-      - name: Sync all HTML views recursively
-        run: |
-          aws s3 cp ModiSonFrontEnd/Views s3://modison-bucket/ --recursive --exclude "*" --include "*.html"
+      # - name: Sync all HTML views recursively
+      #   run: |
+      #     aws s3 cp ModiSonFrontEnd/Views s3://modison-bucket/ --recursive --exclude "*" --include "*.html"
 
       - name: Invalidate CloudFront Cache
         run: aws cloudfront create-invalidation --distribution-id E2MA2BW9PESS66 --paths "/*"
