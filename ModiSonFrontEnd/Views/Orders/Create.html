@@ -18,10 +18,10 @@
             <a href="../Home/Index.html">Home</a>
             <a href="Create.html">Order Now</a>
             <a
-                href="https://modison-auth-domain.auth.us-east-1.amazoncognito.com/login?client_id=50cr96cieb5opojbgbetrpdq5t&response_type=token&scope=openid+profile+email&redirect_uri=http://127.0.0.1:5500/static/Views/Home/index.html">Sign
+                href="https://modison-auth-domain.auth.us-east-1.amazoncognito.com/login?client_id=50cr96cieb5opojbgbetrpdq5t&response_type=token&scope=openid+profile+email&redirect_uri=https://d1p4pvkzpycf8v.cloudfront.net/Views/Home/index.html">Sign
                 In</a>
             <a
-                href="https://modison-auth-domain.auth.us-east-1.amazoncognito.com/logout?client_id=50cr96cieb5opojbgbetrpdq5t&logout_uri=http://127.0.0.1:5500/static/Views/Home/index.html">Sign
+                href="https://modison-auth-domain.auth.us-east-1.amazoncognito.com/logout?client_id=50cr96cieb5opojbgbetrpdq5t&logout_uri=https://d1p4pvkzpycf8v.cloudfront.net/Views/Home/index.html">Sign
                 Out</a>
         </nav>
     </header>
@@ -62,7 +62,7 @@
             }
 
             try {
-                const response = await fetch("https://your-api-gateway-url/products", {
+                const response = await fetch("https://8f3bppntic.execute-api.us-east-1.amazonaws.com/api/products", {
                     headers: { "Authorization": authToken }
                 });
                 const products = await response.json();
