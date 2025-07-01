@@ -4,16 +4,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!token) return;
 
-    fetch("https://8f3bppntic.execute-api.us-east-1.amazonaws.com/api/products", {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
+    fetch("https://your-api-endpoint.com/api/products", {
+        headers: { Authorization: `Bearer ${token}` }
     })
-        .then(res => {
+        .then(async res => {
             console.log("Status:", res.status);
-            return res.json();
-        })
-        .then(products => {
+            if (!res.ok) {
+                const errorBody = await res.text(); // fallback for errors
+                throw new Error(`HTTP ${res.status}: ${errorBody}`);
+            }
+
+            const products = await res.json();
+
+            if (!Array.isArray(products)) {
+                throw new Error("Expected products to be an array.");
+            }
+
             const productList = document.getElementById("productList");
             products.forEach(product => {
                 const option = document.createElement("option");
