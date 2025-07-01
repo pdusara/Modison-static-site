@@ -52,67 +52,8 @@
     <footer>&copy; 2025 Modison UK</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/jwt-decode/build/jwt-decode.min.js"></script>
-    <script>
-        let authToken = null;
-        let orderItems = [];
-
-        async function fetchProducts() {
-            if (!authToken) {
-                console.error("User not authenticated.");
-                return;
-            }
-
-            try {
-                const response = await fetch("https://8f3bppntic.execute-api.us-east-1.amazonaws.com/api/products", {
-                    headers: {
-                        Authorization: `Bearer ${authToken}`
-                    }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`API error: ${response.status}`);
-                }
-
-                const products = await response.json();
-                const productList = document.getElementById("productList");
-                productList.innerHTML = "";
-
-                products.forEach(product => {
-                    let option = document.createElement("option");
-                    option.value = product.ProductName;
-                    option.textContent = product.ProductName;
-                    productList.appendChild(option);
-                });
-            } catch (error) {
-                console.error("Error fetching products:", error);
-                document.getElementById("orderStatus").textContent = "Access denied or session expired. Please log in again.";
-            }
-        }
-
-        function handleAuthRedirect() {
-            const hash = window.location.hash.substring(1);
-            const params = new URLSearchParams(hash);
-            const accessToken = params.get("access_token");
-
-            if (accessToken) {
-                sessionStorage.setItem("access_token", accessToken);
-                window.location.hash = ""; // Clean up the URL
-            }
-
-            authToken = sessionStorage.getItem("access_token");
-
-            if (authToken) {
-                const decoded = jwt_decode(authToken);
-                const email = decoded.email || decoded.username || "User";
-                document.getElementById("username").textContent = `Welcome, ${email}`;
-                fetchProducts();
-            } else {
-                document.getElementById("username").textContent = "Not logged in";
-            }
-        }
-
-        window.onload = handleAuthRedirect;
-    </script>
+    <script src="../../wwwroot/js/auth-handler.js"></script>
+    <script src="../../wwwroot/js/order-handler.js"></script>
 </body>
 
 </html>
