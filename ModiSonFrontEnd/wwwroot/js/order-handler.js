@@ -4,13 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (!token) return;
 
-    fetch("https://your-api-endpoint.com/api/products", {
+    fetch("https://8f3bppntic.execute-api.us-east-1.amazonaws.com/api/products", {
         headers: { Authorization: `Bearer ${token}` }
     })
         .then(async res => {
             console.log("Status:", res.status);
             if (!res.ok) {
-                const errorBody = await res.text(); // fallback for errors
+                const errorBody = await res.text();
                 throw new Error(`HTTP ${res.status}: ${errorBody}`);
             }
 
