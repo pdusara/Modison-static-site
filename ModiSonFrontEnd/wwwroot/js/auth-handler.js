@@ -26,12 +26,20 @@ function getUserInfo() {
 function initAuth() {
     parseAndStoreToken();
     const user = getUserInfo();
-    const username = document.getElementById("username");
-    if (user) {
-        username.textContent = `Welcome, ${user.email || user.username}`;
-    } else {
-        username.textContent = "Not logged in";
+    const usernameEl = document.getElementById("username");
+    if (usernameEl) {
+        if (user) {
+            usernameEl.textContent = `Welcome, ${getDisplayName(user)}`;
+        } else {
+            usernameEl.textContent = "Not logged in";
+        }
     }
 }
 
-window.onload = initAuth;
+function getDisplayName(user) {
+    return user?.email ?? user?.["cognito:username"] ?? user?.sub ?? "User";
+}
+
+window.onload = () => {
+    initAuth();
+}
