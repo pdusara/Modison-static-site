@@ -23,8 +23,8 @@ document.addEventListener("DOMContentLoaded", () => {
             const productList = document.getElementById("productList");
             products.forEach(product => {
                 const option = document.createElement("option");
-                option.value = product.ProductName;
-                option.textContent = product.ProductName;
+                option.value = product.productName;
+                option.textContent = product.productName;
                 productList.appendChild(option);
             });
         })
