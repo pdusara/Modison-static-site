@@ -37,7 +37,7 @@ function initAuth() {
 }
 
 function getDisplayName(user) {
-    return user?.email ?? user?.["cognito:username"] ?? user?.sub ?? "User";
+    return user?.email ?? user?.username ?? user?.sub ?? "User";
 }
 
 window.onload = () => {
