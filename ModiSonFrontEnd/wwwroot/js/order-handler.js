@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const token = getAccessToken();
+    console.log("Token:", token);
+
     if (!token) return;
 
     fetch("https://8f3bppntic.execute-api.us-east-1.amazonaws.com/api/products", {
@@ -7,7 +9,10 @@ document.addEventListener("DOMContentLoaded", () => {
             Authorization: `Bearer ${token}`
         }
     })
-        .then(res => res.json())
+        .then(res => {
+            console.log("Status:", res.status);
+            return res.json();
+        })
         .then(products => {
             const productList = document.getElementById("productList");
             products.forEach(product => {
