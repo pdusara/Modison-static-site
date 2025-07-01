@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     const token = getAccessToken();
-    console.log("Token:", token);
 
     if (!token) return;
 
@@ -8,7 +7,6 @@ document.addEventListener("DOMContentLoaded", () => {
         headers: { Authorization: `Bearer ${token}` }
     })
         .then(async res => {
-            console.log("Status:", res.status);
             if (!res.ok) {
                 const errorBody = await res.text();
                 throw new Error(`HTTP ${res.status}: ${errorBody}`);
