@@ -32,19 +32,18 @@ document.addEventListener("DOMContentLoaded", () => {
             orders.forEach(order => {
                 // Create a new row for each order
                 const headerRow = document.createElement("tr");
-                headerRow.innerHTML = `<td colspan="4"><strong>Order placed on ${new Date(order.OrderDate).toLocaleString()}</strong></td>`;
+                headerRow.innerHTML = `<td colspan="4"><strong>Order placed on ${new Date(order.orderDate).toLocaleString()}</strong></td>`;
                 ordersTable.appendChild(headerRow);
 
                 // Create a row for each item in the order
-                order.Items.forEach(item => {
+                order.forEach(item => {
                     let row = document.createElement("tr");
                     row.innerHTML = `
-                <td>${item.ProductName}</td>
-                <td>${item.Quantity}</td>
-                <td>${new Date(order.OrderDate).toLocaleString()}</td>
-                <td>${order.Status}</td>
+                <td>${item.productName}</td>
+                <td>${item.quantity}</td>
+                <td>${new Date(order.orderDate).toLocaleString()}</td>
+                <td>${order.status}</td>
             `;
-
                     ordersTable.appendChild(row);
                 });
             })
