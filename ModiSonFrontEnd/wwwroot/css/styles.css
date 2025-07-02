@@ -136,8 +136,7 @@ footer {
     border-spacing: 0;
     overflow: hidden;
     border-radius: 8px;
-    background-color: #fff8e1;
-    /* soft snacky yellow tone */
+    background-color: #fafafa;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
     font-family: Arial, sans-serif;
     font-size: 14px;
