@@ -137,30 +137,51 @@ footer {
     overflow: hidden;
     border-radius: 8px;
     background-color: #fff8e1;
+    /* soft snacky yellow tone */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    font-family: Arial, sans-serif;
+    font-size: 14px;
 }
 
-#ordersTable th,
+/* Header styling with gradient spice */
+#ordersTable th {
+    background: linear-gradient(to right, #f57c00, #ef6c00);
+    /* saffron + burnt orange */
+    color: white;
+    padding: 12px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#ordersTable th:first-child {
+    border-top-left-radius: 8px;
+}
+
+#ordersTable th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Table cell styling */
 #ordersTable td {
     border: 1px solid #ddd;
-    padding: 8px;
+    padding: 14px;
     text-align: left;
+    color: #4e342e;
+    /* warm earthy brown */
 }
 
-#ordersTable th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-}
-
+/* Even row background */
 #ordersTable tr:nth-child(even) {
     background-color: #fafafa;
 }
 
+/* Row hover with golden glow */
 #ordersTable tr:hover {
     background-color: #fff3cd;
     transition: background-color 0.2s ease-in-out;
 }
 
+/* Optional: Section header row (e.g. grouping orders by date) */
 .order-header-row td {
     background-color: #e9f5ff;
     font-weight: bold;
