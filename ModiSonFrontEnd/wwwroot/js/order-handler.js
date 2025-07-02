@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // Populate product list from API  
     const token = getAccessToken();
 
     if (!token) return;
@@ -32,9 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-
-
-
+    // Add event listener for adding items to the order        
     let orderItems = [];
 
     document.getElementById("addItem").addEventListener("click", function () {
@@ -54,6 +53,53 @@ document.addEventListener("DOMContentLoaded", () => {
             // Store JSON string for form submission
             document.getElementById("ItemsJson").value = JSON.stringify(orderItems);
         }
+    });
+
+    // Handle order submission
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        document.getElementById("orderForm").querySelector("button[type='submit']").disabled = true;
+
+        if (!token) {
+            document.getElementById("orderStatus").textContent = "❌ Please sign in first.";
+            return;
+        }
+
+        const customerName = document.getElementById("customerName").value;
+        const itemsJson = document.getElementById("ItemsJson").value;
+
+        if (!customerName || !itemsJson) {
+            document.getElementById("orderStatus").textContent = "⚠️ Please complete the order form.";
+            return;
+        }
+
+        const payload = {
+            customerName: customerName,
+            items: JSON.parse(itemsJson)
+        };
+
+        fetch("https://w7bvze42lk.execute-api.us-east-1.amazonaws.com/api/orders", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(res => {
+                if (!res.ok) {
+                    return res.text().then(text => { throw new Error(text); });
+                }
+                // Optional: show confirmation before redirect
+                document.getElementById("orderStatus").textContent = "✅ Order placed! Redirecting...";
+                setTimeout(() => {
+                    window.location.href = "CustomerOrderList.html";
+                }, 1000);
+            })
+            .catch(err => {
+                console.error(err);
+                document.getElementById("orderStatus").textContent = "❌ Failed to place order: " + err.message;
+            });
     });
 });
 
