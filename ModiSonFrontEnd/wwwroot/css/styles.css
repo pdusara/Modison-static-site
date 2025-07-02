@@ -102,3 +102,39 @@ button:hover {
     padding: 15px;
     font-size: 1rem;
 }
+
+#ordersTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+#ordersTable th,
+#ordersTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#ordersTable th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+#ordersTable tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+#ordersTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.order-header-row td {
+    background-color: #e9f5ff;
+    font-weight: bold;
+    text-align: left;
+    border: none;
+    padding-top: 16px;
+}
