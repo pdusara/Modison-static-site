@@ -104,18 +104,19 @@ button:hover {
 }
 
 #ordersTable {
-    width: 100%;
+    width: 60%;
     border-collapse: collapse;
     margin-top: 1rem;
     font-family: Arial, sans-serif;
     font-size: 14px;
+    margin-left: 5%;
 }
 
 #ordersTable th,
 #ordersTable td {
     border: 1px solid #ddd;
     padding: 8px;
-    text-align: center;
+    text-align: left;
 }
 
 #ordersTable th {
