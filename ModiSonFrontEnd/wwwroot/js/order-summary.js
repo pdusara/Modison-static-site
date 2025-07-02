@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     row.innerHTML = `
                 <td>${item.productName}</td>
                 <td>${item.quantity}</td>
-                <td>${new Date(order.orderDate).toLocaleString()}</td>
                 <td>${order.status}</td>
             `;
                     ordersTable.appendChild(row);
