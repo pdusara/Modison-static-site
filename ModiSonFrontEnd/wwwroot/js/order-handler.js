@@ -74,8 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const payload = {
-            customerName: customerName,
-            items: JSON.parse(itemsJson)
+            order: {
+                customerName: customerName
+            },
+            itemsJson: itemsJson
         };
 
         fetch("https://w7bvze42lk.execute-api.us-east-1.amazonaws.com/api/orders", {
