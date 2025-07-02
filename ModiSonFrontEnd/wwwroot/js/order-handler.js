@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("orderForm").querySelector("button[type='submit']").disabled = true;
 
         if (!token) {
-            document.getElementById("orderStatus").textContent = "❌ Please sign in first.";
+            document.getElementById("orderStatus").textContent = "Please sign in first.";
             return;
         }
 
@@ -69,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const itemsJson = document.getElementById("ItemsJson").value;
 
         if (!customerName || !itemsJson) {
-            document.getElementById("orderStatus").textContent = "⚠️ Please complete the order form.";
+            document.getElementById("orderStatus").textContent = "Please complete the order form.";
             return;
         }
 
@@ -91,14 +91,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     return res.text().then(text => { throw new Error(text); });
                 }
                 // Optional: show confirmation before redirect
-                document.getElementById("orderStatus").textContent = "✅ Order placed! Redirecting...";
+                document.getElementById("orderStatus").textContent = "Order placed. Redirecting...";
                 setTimeout(() => {
                     window.location.href = "CustomerOrderList.html";
                 }, 1000);
             })
             .catch(err => {
                 console.error(err);
-                document.getElementById("orderStatus").textContent = "❌ Failed to place order: " + err.message;
+                document.getElementById("orderStatus").textContent = "Failed to place order: " + err.message;
             });
     });
 });
