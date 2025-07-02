@@ -24,6 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (Array.isArray(orders)) {
+
+            console.log("orders is:", orders);
+            console.log("typeof orders:", typeof orders);
+            console.log("Array.isArray(orders):", Array.isArray(orders));
+
             orders.forEach(order => {
                 // Create a new row for each order
                 const headerRow = document.createElement("tr");
