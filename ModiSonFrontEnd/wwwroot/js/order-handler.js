@@ -30,4 +30,30 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Failed to fetch products:", error);
             document.getElementById("orderStatus").textContent = "Unable to load snacks.";
         });
+
+
+
+
+
+    let orderItems = [];
+
+    document.getElementById("addItem").addEventListener("click", function () {
+        let productList = document.getElementById("productList");
+        let quantity = document.getElementById("quantity").value;
+        let selectedProduct = productList.options[productList.selectedIndex].text;
+
+        if (selectedProduct && quantity > 0) {
+            orderItems.push({ ProductName: selectedProduct, Quantity: parseInt(quantity) });
+
+            // Display added items
+            let orderItemsList = document.getElementById("orderItems");
+            let newItem = document.createElement("li");
+            newItem.innerText = `${selectedProduct} - Quantity: ${quantity}`;
+            orderItemsList.appendChild(newItem);
+
+            // Store JSON string for form submission
+            document.getElementById("ItemsJson").value = JSON.stringify(orderItems);
+        }
+    });
 });
+
