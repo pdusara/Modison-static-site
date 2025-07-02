@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ordersTable.appendChild(headerRow);
 
                 // Create a row for each item in the order
-                order.forEach(item => {
+                order.items.forEach(item => {
                     let row = document.createElement("tr");
                     row.innerHTML = `
                 <td>${item.productName}</td>
